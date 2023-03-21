@@ -14,14 +14,13 @@ void print_times_table(int n)
 			for (j = 0; j <= n; j++)
 			{
 				k = j * i;
+				_putchar(k);
 				if (j < n)
 				{
-					_putchar(k + ',' + ' ');
-				} else {
-					_putchar(k);
+					_putchar(',');
 				}
-				_putchar('\n');
 			}
+			_putchar('\n');
 		}
 	}
 }
