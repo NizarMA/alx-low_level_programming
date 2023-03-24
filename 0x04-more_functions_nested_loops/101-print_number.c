@@ -2,11 +2,11 @@
 #include <stdio.h>
 
 /**
- * print number - prints an integer.
- * @n: the integer to print.
+ * print_number - Prints an integer.
+ * @n: The integer to prints.
+ *
  * Return: Nothing!
  */
-
 void print_number(int n)
 {
 	unsigned int k = n;
@@ -15,10 +15,13 @@ void print_number(int n)
 	{
 		n *= -1;
 		k = n;
-		putchar (' ');
-	}
+		putchar('-');
+		}
+
 	k /= 10;
+
 	if (k != 0)
 		print_number(k);
+
 	putchar((unsigned int) n % 10 + '0');
 }
