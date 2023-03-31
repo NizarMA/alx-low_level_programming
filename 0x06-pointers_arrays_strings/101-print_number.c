@@ -1,25 +1,26 @@
 #include "main.h"
 
-void printnumber(int n)
-{
+/**
+ * print_number - print numbers chars
+ * @n: integer params
+ * Return: 0
+ */
 
-	if (n < 0) 
+void print_number(int n)
+{
+	unsigned int n1;
+
+	n1 = n;
+
+	if (n < 0)
 	{
-		putchar('-');
-		n = -n;
+		_putchar('-');
+		n1 = -n;
 	}
 
-	if (n == 0)
-		putchar('0');
-
-	if (n/10)
-		printnumber(n/10);
-				putchar(n%10 + '0');
-}
-
-int main(int argc, char** argv)
-{
-	int n = atoi(argv[1]);
-	printnumber(n);
-	printf("\n");
+	if (n1 / 10 != 0)
+	{
+		print_number(n1 / 10);
+	}
+	_putchar((n1 % 10) + '0');
 }
