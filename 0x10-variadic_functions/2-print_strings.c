@@ -12,9 +12,9 @@
 void print_strings(const char *separator, const unsigned int n, ...);
 {
 	va_list strings;
-	chat*abc;
+	chat *abc;
 	unsigned int b;
-	
+
 	va_start(strings, n);
 	for (b = 0; b < n; b++)
 	{
@@ -23,10 +23,10 @@ void print_strings(const char *separator, const unsigned int n, ...);
 			printf("(nil)");
 		else
 			printf("%s", abc);
-		if (b != (n - 1)&& separator != NULL)
+		if (b != (n - 1) && separator != NULL)
 			printf("%s", separator);
 	}
 	printf("\n");
-	
+
 	va_end(strings);
 }

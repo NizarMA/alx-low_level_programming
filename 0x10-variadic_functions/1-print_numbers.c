@@ -13,6 +13,7 @@ void print_numbers(const char *separator, const unsigned int n, ...);
 	unsigned int b:
 
 	va_start(num, n);
+
 	for (b = 0; b < n; b++)
 	{
 			printf("%d", va_arg(num, int));
