@@ -11,24 +11,27 @@
  * Description: If separator is NULL, it is not printed.
  *              If one of the strings if NULL, (nil) is printed instead.
  */
-
-void print_strings(const char *separator, const unsigned int n, ...);
+void print_strings(const char *separator, const unsigned int n, ...)
 {
 	va_list strings;
-	chat *abc;
-	unsigned int b;
+	char *str;
+	unsigned int index;
 
 	va_start(strings, n);
-	for (b = 0; b < n; b++)
+
+	for (index = 0; index < n; index++)
 	{
-		abc = va_arg(strings, char*);
-		if (abc == NULL)
+		str = va_arg(strings, char *);
+
+		if (str == NULL)
 			printf("(nil)");
 		else
-			printf("%s", abc);
-		if (b != (n - 1) && separator != NULL)
+			printf("%s", str);
+
+		if (index != (n - 1) && separator != NULL)
 			printf("%s", separator);
 	}
+
 	printf("\n");
 
 	va_end(strings);
