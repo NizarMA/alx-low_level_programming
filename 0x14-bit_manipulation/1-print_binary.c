@@ -8,6 +8,7 @@ void print_binary(unsigned long int n)
 {
 	int bin = sizeof(unsigned long int) * 8 - 1;
 	int starting_zero = 1;
+
 	while
 		(bin >= 0)
 		{
