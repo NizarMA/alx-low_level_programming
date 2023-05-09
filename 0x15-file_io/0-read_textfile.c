@@ -1,59 +1,40 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include "main.h"
+
 /**
- *  read_textfile- Read text file print to STDOUT.
- * @filename: text file being read
- * @letters: number of letters to be read
- * Return: if the file can not be opened or read, return 0
- * if filename is NULL return 0
- * if write fails or does not write the expected amount of bytes, return 0
+ * read_textfile - Read a text file and print POSIX stdout
+ * @filename: char string of file name
+ * @letters: number of letters to read and print
+ * Return: number of letters read and printed, or 0 if error
  */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	 int fd;
-	 ssize_t read, written;
-	 char *buff;
+	int fd;
+	ssize_t read, write;
+	char *buff;
 
-	 if
-		(filename == NULL)
-		{
-			return (0);
-		}
-	FILE *fp = fopen(filename, "r");
+	if (filename == NULL)
+		return (0);
 
-	if
-		(fp == NULL)
-		{
-			return (0);
-		}
-	char *buff = (char *) malloc(sizeof(char) * letters);
+	fd = open(filename, O_RDWR);
+	if (fd == -1)
+		return (0);
 
-	if
-		(buff == NULL)
-		{
-			fclose(fp);
-			return (0);
-		}
-	ssize_t read = fread(buff, sizeof(char), letters, fp);
+	buff = malloc(sizeof(char) * letters);
+	if (buff == NULL)
+	{
+		free(buff);
+		return (0);
+	}
+	read = read(fd, buff, letters);
+	if (read == -1)
+		return (0);
 
-	if
-		(read == -1)
-		{
-			fclose(fp);
-			free(buff);
-			return (0);
-		}
-	ssize_t written = write(STDOUT_FILENO, buff, read);
-
-	if
-		(written == -1 || written != read)
-		{
-			fclose(fp);
-			free(buff);
-			return (0);
-		}
-	fclose(fp);
+	write = write(STDOUT_FILENO, buff, read);
+	if (write == -1 || read !=  write)
+		return (0);
 	free(buff);
-	return (written);
+
+	close(fd);
+	return (write);
 }
